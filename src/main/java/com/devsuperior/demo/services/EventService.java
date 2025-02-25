@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.demo.dto.EventDTO;
+import com.devsuperior.demo.entities.City;
 import com.devsuperior.demo.entities.Event;
 import com.devsuperior.demo.repositories.EventsRepository;
 import com.devsuperior.demo.services.exceptions.DatabaseException;
@@ -41,8 +42,10 @@ public class EventService {
 	public EventDTO insert(EventDTO dto) {
 		Event event = new Event();
 		event.setName(dto.getName());
-		event = repository.save(event);
-		return new EventDTO(event);
+		event.setDate(dto.getDate());
+		event.setUrl(dto.getUrl());
+		event.setCity(new City(dto.getCityId(), null));
+		return new EventDTO(repository.save(event));
 	}
 	@Transactional
 	public EventDTO update(Long id, EventDTO dto) {

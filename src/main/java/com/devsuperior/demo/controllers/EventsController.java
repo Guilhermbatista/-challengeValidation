@@ -39,7 +39,7 @@ public class EventsController {
 	}
 
 	@PostMapping
-	@PreAuthorize("hasAnyRole('ROLE_OPERATOR','ROLE_ADMIN' )")
+	@PreAuthorize("hasAnyRole('ROLE_CLIENT','ROLE_ADMIN' )")
 	public ResponseEntity<EventDTO> insert(@Valid @RequestBody EventDTO dto) {
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();

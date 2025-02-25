@@ -26,7 +26,6 @@ public class Event {
 	private String url;
 
 	@ManyToOne
-	@NotNull(message = "Cidade não pode ser nula")
 	@JoinColumn(name = "city_id")
 	private City city;
 
